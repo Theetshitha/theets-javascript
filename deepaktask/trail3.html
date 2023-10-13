@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="todoInput" placeholder="Enter a task">
+    <button id="addButton">Add</button>
+    <ul id="todoList"></ul>
+    <button id="clearButton">Clear List</button>
+
+    <script>
+        document.getElementById('addButton').addEventListener('click', addTodo);
+        document.getElementById('clearButton').addEventListener('click', clearList);
+
+        function addTodo() {
+            const todoInput = document.getElementById('todoInput').value;
+            if (todoInput.trim() === '') {
+                alert('Please enter a valid task.');
+                return;
+            }
+
+            const todoList = document.getElementById('todoList');
+            const li = document.createElement('li');
+            const deleteButton = document.createElement('button');
+
+            li.textContent = todoInput;
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                todoList.removeChild(li);
+            });
+
+            li.appendChild(deleteButton);
+            todoList.appendChild(li);
+            document.getElementById('todoInput').value = ''; // Clear the input field after adding
+        }
+
+        function clearList() {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = ''; // Clear the entire list
+        }
+    </script>
+</body>
+</html>

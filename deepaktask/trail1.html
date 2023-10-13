@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="todoInput" placeholder="Enter a task">
+    <button onclick="addTodo()">Add</button>
+    <ul id="todoList"></ul>
+    <button onclick="clearList()">Clear List</button>
+    <input type="number" id="deleteIndex" placeholder="Enter index to delete">
+    <button onclick="deleteTodo()">Delete</button>
+
+    <script>
+        function addTodo() {
+            const todoInput = document.getElementById('todoInput');
+            const todoList = document.getElementById('todoList');
+            const li = document.createElement('li');
+            li.textContent = todoInput.value;
+            todoList.appendChild(li);
+            todoInput.value = ''; // Clear the input field after adding
+        }
+
+        function clearList() {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = ''; // Clear the entire list
+        }
+
+        function deleteTodo() {
+            const deleteIndex = document.getElementById('deleteIndex').value;
+            const todoList = document.getElementById('todoList');
+            const listItems = todoList.getElementsByTagName('li');
+            
+            if (deleteIndex >= 0 && deleteIndex < listItems.length) {
+                todoList.removeChild(listItems[deleteIndex]);
+            } else {
+                alert('Invalid index!');
+            }
+        }
+    </script>
+</body>
+</html>
